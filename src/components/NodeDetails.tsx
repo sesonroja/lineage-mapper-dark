@@ -8,7 +8,7 @@ import {
 import { X } from "lucide-react";
 import { Button } from "./ui/button";
 
-interface NodeData {
+export interface NodeData {
   label: string;
   type: string;
   businessTerm: string;

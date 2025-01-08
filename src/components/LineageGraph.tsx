@@ -13,8 +13,15 @@ import {
 import '@xyflow/react/dist/style.css';
 import { DownloadButtons } from './DownloadButtons';
 import { NodeDetails } from './NodeDetails';
+import { SidebarProvider } from './ui/sidebar';
 
-const initialNodes: Node[] = [
+interface NodeData {
+  label: string;
+  type: string;
+  businessTerm: string;
+}
+
+const initialNodes: Node<NodeData>[] = [
   {
     id: 'N_00001',
     type: 'default',
@@ -194,44 +201,46 @@ const initialEdges: Edge[] = [
 ];
 
 export function LineageGraph() {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState<NodeData>(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const [selectedNode, setSelectedNode] = useState<Node | null>(null);
+  const [selectedNode, setSelectedNode] = useState<Node<NodeData> | null>(null);
 
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 
-  const onNodeClick = useCallback((_: React.MouseEvent, node: Node) => {
+  const onNodeClick = useCallback((_: React.MouseEvent, node: Node<NodeData>) => {
     setSelectedNode(node);
   }, []);
 
   return (
-    <div className="flex w-full h-[800px] bg-background">
-      <div className="flex-1">
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          onNodeClick={onNodeClick}
-          fitView
-          attributionPosition="bottom-right"
-          className="dark"
-        >
-          <Background className="dark:bg-gray-900" />
-          <Controls className="dark:bg-gray-800 dark:text-white" />
-          <MiniMap 
-            className="dark:bg-gray-800"
-            nodeColor="#9E86ED"
-            maskColor="rgba(0, 0, 0, 0.2)"
-          />
-          <DownloadButtons />
-        </ReactFlow>
+    <SidebarProvider>
+      <div className="flex w-full h-[800px] bg-background">
+        <div className="flex-1">
+          <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+            onNodeClick={onNodeClick}
+            fitView
+            attributionPosition="bottom-right"
+            className="dark"
+          >
+            <Background className="dark:bg-gray-900" />
+            <Controls className="dark:bg-gray-800 dark:text-white" />
+            <MiniMap 
+              className="dark:bg-gray-800"
+              nodeColor="#9E86ED"
+              maskColor="rgba(0, 0, 0, 0.2)"
+            />
+            <DownloadButtons />
+          </ReactFlow>
+        </div>
+        <NodeDetails 
+          node={selectedNode} 
+          onClose={() => setSelectedNode(null)} 
+        />
       </div>
-      <NodeDetails 
-        node={selectedNode} 
-        onClose={() => setSelectedNode(null)} 
-      />
-    </div>
+    </SidebarProvider>
   );
 }
