@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import {
   ReactFlow,
   MiniMap,
@@ -12,6 +12,7 @@ import {
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { DownloadButtons } from './DownloadButtons';
+import { NodeDetails } from './NodeDetails';
 
 const initialNodes: Node[] = [
   {
@@ -195,30 +196,42 @@ const initialEdges: Edge[] = [
 export function LineageGraph() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [selectedNode, setSelectedNode] = useState<Node | null>(null);
 
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 
+  const onNodeClick = useCallback((_: React.MouseEvent, node: Node) => {
+    setSelectedNode(node);
+  }, []);
+
   return (
-    <div className="w-full h-[800px] bg-background">
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        fitView
-        attributionPosition="bottom-right"
-        className="dark"
-      >
-        <Background className="dark:bg-gray-900" />
-        <Controls className="dark:bg-gray-800 dark:text-white" />
-        <MiniMap 
-          className="dark:bg-gray-800"
-          nodeColor="#9E86ED"
-          maskColor="rgba(0, 0, 0, 0.2)"
-        />
-        <DownloadButtons />
-      </ReactFlow>
+    <div className="flex w-full h-[800px] bg-background">
+      <div className="flex-1">
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          onNodeClick={onNodeClick}
+          fitView
+          attributionPosition="bottom-right"
+          className="dark"
+        >
+          <Background className="dark:bg-gray-900" />
+          <Controls className="dark:bg-gray-800 dark:text-white" />
+          <MiniMap 
+            className="dark:bg-gray-800"
+            nodeColor="#9E86ED"
+            maskColor="rgba(0, 0, 0, 0.2)"
+          />
+          <DownloadButtons />
+        </ReactFlow>
+      </div>
+      <NodeDetails 
+        node={selectedNode} 
+        onClose={() => setSelectedNode(null)} 
+      />
     </div>
   );
 }
