@@ -11,6 +11,7 @@ import {
   Edge,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
+import { DownloadButtons } from './DownloadButtons';
 
 const initialNodes: Node[] = [
   {
@@ -216,6 +217,7 @@ export function LineageGraph() {
           nodeColor="#9E86ED"
           maskColor="rgba(0, 0, 0, 0.2)"
         />
+        <DownloadButtons />
       </ReactFlow>
     </div>
   );
