@@ -53,7 +53,8 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         node: {
-          base: "#2D3748",
+          base: "#8E9196",
+          transformation: "#9b87f5",
           highlight: "#9E86ED",
           text: "#E2E8F0",
         },

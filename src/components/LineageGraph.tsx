@@ -33,7 +33,7 @@ const initialNodes: Node[] = [
       businessTerm: '48'
     },
     position: { x: 400, y: 100 },
-    className: 'dark:bg-node-base dark:text-node-text border-2 border-node-highlight rounded-lg p-4'
+    className: 'dark:bg-node-transformation dark:text-node-text border-2 border-node-highlight rounded-lg p-4'
   },
   {
     id: 'N_00003',
