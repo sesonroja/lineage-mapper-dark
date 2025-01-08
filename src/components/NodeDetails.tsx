@@ -8,8 +8,14 @@ import {
 import { X } from "lucide-react";
 import { Button } from "./ui/button";
 
+interface NodeData {
+  label: string;
+  type: string;
+  businessTerm: string;
+}
+
 interface NodeDetailsProps {
-  node: Node | null;
+  node: Node<NodeData> | null;
   onClose: () => void;
 }
 
