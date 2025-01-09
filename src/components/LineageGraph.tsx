@@ -15,10 +15,11 @@ import { DownloadButtons } from './DownloadButtons';
 import { NodeDetails } from './NodeDetails';
 import { SidebarProvider } from './ui/sidebar';
 
-export interface NodeData extends Record<string, unknown> {
+export interface NodeData {
   label: string;
   type: string;
   businessTerm: string;
+  [key: string]: unknown; // Add index signature to satisfy Record<string, unknown>
 }
 
 const initialNodes: Node<NodeData>[] = [

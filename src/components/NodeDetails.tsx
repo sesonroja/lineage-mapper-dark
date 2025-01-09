@@ -12,6 +12,7 @@ export interface NodeData {
   label: string;
   type: string;
   businessTerm: string;
+  [key: string]: unknown; // Add index signature to satisfy Record<string, unknown>
 }
 
 interface NodeDetailsProps {
