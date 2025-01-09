@@ -202,7 +202,7 @@ const initialEdges: Edge[] = [
 ];
 
 export function LineageGraph() {
-  const [nodes, setNodes, onNodesChange] = useNodesState<NodeData>(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState<Node<NodeData>>(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [selectedNode, setSelectedNode] = useState<Node<NodeData> | null>(null);
 
@@ -214,7 +214,7 @@ export function LineageGraph() {
 
   return (
     <SidebarProvider>
-      <div className="flex w-full h-[800px] bg-background">
+      <div className="flex w-full h-[800px] bg-background relative">
         <div className="flex-1">
           <ReactFlow
             nodes={nodes}
