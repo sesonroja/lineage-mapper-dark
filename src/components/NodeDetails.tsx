@@ -3,7 +3,6 @@ import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
-  SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { X } from "lucide-react";
 import { Button } from "./ui/button";
@@ -12,7 +11,7 @@ export interface NodeData {
   label: string;
   type: string;
   businessTerm: string;
-  [key: string]: unknown; // Add index signature to satisfy Record<string, unknown>
+  [key: string]: unknown;
 }
 
 interface NodeDetailsProps {
@@ -24,8 +23,8 @@ export function NodeDetails({ node, onClose }: NodeDetailsProps) {
   if (!node) return null;
 
   return (
-    <div className="fixed right-0 top-0 h-full">
-      <Sidebar className="w-[300px] border-l border-gray-800">
+    <div className="h-screen border-l border-gray-800 bg-background">
+      <Sidebar className="w-[300px]">
         <SidebarHeader className="border-b border-gray-800 p-4">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">Node Details</h2>

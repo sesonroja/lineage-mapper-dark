@@ -2,11 +2,11 @@ import { LineageGraph } from "@/components/LineageGraph";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <header className="p-6 border-b border-gray-800">
-        <h1 className="text-2xl font-semibold">Data Lineage Visualization</h1>
+    <div className="min-h-screen bg-gray-900">
+      <header className="p-4 border-b border-gray-800">
+        <h1 className="text-2xl font-semibold text-white">Data Lineage Visualization</h1>
       </header>
-      <main className="container mx-auto py-6">
+      <main className="h-[calc(100vh-73px)]">
         <LineageGraph />
       </main>
     </div>

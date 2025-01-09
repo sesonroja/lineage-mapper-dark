@@ -214,8 +214,8 @@ export function LineageGraph() {
 
   return (
     <SidebarProvider>
-      <div className="flex w-full h-[800px] bg-background relative">
-        <div className="flex-1">
+      <div className="flex w-full min-h-screen bg-background">
+        <div className="flex-1 relative">
           <ReactFlow
             nodes={nodes}
             edges={edges}
@@ -225,7 +225,7 @@ export function LineageGraph() {
             onNodeClick={onNodeClick}
             fitView
             attributionPosition="bottom-right"
-            className="dark"
+            className="dark h-screen"
             defaultEdgeOptions={{
               type: 'smoothstep',
               animated: true,
