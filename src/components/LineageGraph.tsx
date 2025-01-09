@@ -15,35 +15,13 @@ import { DownloadButtons } from './DownloadButtons';
 import { NodeDetails } from './NodeDetails';
 import { SidebarProvider } from './ui/sidebar';
 
-interface NodeData {
+export interface NodeData extends Record<string, unknown> {
   label: string;
   type: string;
   businessTerm: string;
 }
 
 const initialNodes: Node<NodeData>[] = [
-  {
-    id: 'N_00001',
-    type: 'default',
-    data: { 
-      label: 'Afluente Colbún (d)',
-      type: 'Base',
-      businessTerm: '48'
-    },
-    position: { x: 400, y: 0 },
-    className: 'dark:bg-node-base dark:text-node-text border-2 border-node-highlight rounded-lg p-4'
-  },
-  {
-    id: 'N_00002',
-    type: 'default',
-    data: { 
-      label: 'Calculo Afluente Colbún (d)',
-      type: 'Transformación',
-      businessTerm: '48'
-    },
-    position: { x: 400, y: 100 },
-    className: 'dark:bg-node-transformation dark:text-node-text border-2 border-node-highlight rounded-lg p-4'
-  },
   {
     id: 'N_00003',
     type: 'default',
@@ -52,7 +30,7 @@ const initialNodes: Node<NodeData>[] = [
       type: 'Base',
       businessTerm: 'Sin Asignar'
     },
-    position: { x: 0, y: 200 },
+    position: { x: 0, y: 0 },
     className: 'dark:bg-node-base dark:text-node-text border-2 border-node-highlight rounded-lg p-4'
   },
   {
@@ -63,7 +41,7 @@ const initialNodes: Node<NodeData>[] = [
       type: 'Base',
       businessTerm: 'Sin Asignar'
     },
-    position: { x: 200, y: 200 },
+    position: { x: 0, y: 100 },
     className: 'dark:bg-node-base dark:text-node-text border-2 border-node-highlight rounded-lg p-4'
   },
   {
@@ -74,7 +52,7 @@ const initialNodes: Node<NodeData>[] = [
       type: 'Base',
       businessTerm: 'Sin Asignar'
     },
-    position: { x: 400, y: 200 },
+    position: { x: 0, y: 200 },
     className: 'dark:bg-node-base dark:text-node-text border-2 border-node-highlight rounded-lg p-4'
   },
   {
@@ -85,7 +63,7 @@ const initialNodes: Node<NodeData>[] = [
       type: 'Base',
       businessTerm: 'Sin Asignar'
     },
-    position: { x: 600, y: 200 },
+    position: { x: 0, y: 300 },
     className: 'dark:bg-node-base dark:text-node-text border-2 border-node-highlight rounded-lg p-4'
   },
   {
@@ -96,7 +74,7 @@ const initialNodes: Node<NodeData>[] = [
       type: 'Base',
       businessTerm: 'Sin Asignar'
     },
-    position: { x: 800, y: 200 },
+    position: { x: 0, y: 400 },
     className: 'dark:bg-node-base dark:text-node-text border-2 border-node-highlight rounded-lg p-4'
   },
   {
@@ -107,7 +85,7 @@ const initialNodes: Node<NodeData>[] = [
       type: 'Base',
       businessTerm: 'Sin Asignar'
     },
-    position: { x: 200, y: 300 },
+    position: { x: 0, y: 500 },
     className: 'dark:bg-node-base dark:text-node-text border-2 border-node-highlight rounded-lg p-4'
   },
   {
@@ -118,7 +96,7 @@ const initialNodes: Node<NodeData>[] = [
       type: 'Base',
       businessTerm: 'Sin Asignar'
     },
-    position: { x: 400, y: 300 },
+    position: { x: 0, y: 600 },
     className: 'dark:bg-node-base dark:text-node-text border-2 border-node-highlight rounded-lg p-4'
   },
   {
@@ -129,7 +107,29 @@ const initialNodes: Node<NodeData>[] = [
       type: 'Base',
       businessTerm: '50'
     },
-    position: { x: 600, y: 300 },
+    position: { x: 0, y: 700 },
+    className: 'dark:bg-node-base dark:text-node-text border-2 border-node-highlight rounded-lg p-4'
+  },
+  {
+    id: 'N_00002',
+    type: 'default',
+    data: { 
+      label: 'Calculo Afluente Colbún (d)',
+      type: 'Transformación',
+      businessTerm: '48'
+    },
+    position: { x: 400, y: 350 },
+    className: 'dark:bg-node-transformation dark:text-node-text border-2 border-node-highlight rounded-lg p-4'
+  },
+  {
+    id: 'N_00001',
+    type: 'default',
+    data: { 
+      label: 'Afluente Colbún (d)',
+      type: 'Base',
+      businessTerm: '48'
+    },
+    position: { x: 800, y: 350 },
     className: 'dark:bg-node-base dark:text-node-text border-2 border-node-highlight rounded-lg p-4'
   }
 ];
@@ -225,6 +225,13 @@ export function LineageGraph() {
             fitView
             attributionPosition="bottom-right"
             className="dark"
+            defaultEdgeOptions={{
+              type: 'smoothstep',
+              animated: true,
+            }}
+            proOptions={{
+              hideAttribution: true,
+            }}
           >
             <Background className="dark:bg-gray-900" />
             <Controls className="dark:bg-gray-800 dark:text-white" />
