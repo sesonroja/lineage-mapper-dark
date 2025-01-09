@@ -244,10 +244,12 @@ export function LineageGraph() {
             <DownloadButtons />
           </ReactFlow>
         </div>
-        <NodeDetails 
-          node={selectedNode} 
-          onClose={() => setSelectedNode(null)} 
-        />
+        {selectedNode && (
+          <NodeDetails 
+            node={selectedNode} 
+            onClose={() => setSelectedNode(null)} 
+          />
+        )}
       </div>
     </SidebarProvider>
   );
