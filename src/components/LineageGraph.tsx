@@ -214,7 +214,7 @@ export function LineageGraph() {
 
   return (
     <SidebarProvider>
-      <div className="flex w-full min-h-screen bg-background">
+      <div className="flex w-full h-screen bg-[#0f172a]">
         <div className="flex-1 relative">
           <ReactFlow
             nodes={nodes}
@@ -225,7 +225,7 @@ export function LineageGraph() {
             onNodeClick={onNodeClick}
             fitView
             attributionPosition="bottom-right"
-            className="dark h-screen"
+            className="dark"
             defaultEdgeOptions={{
               type: 'smoothstep',
               animated: true,
@@ -234,7 +234,7 @@ export function LineageGraph() {
               hideAttribution: true,
             }}
           >
-            <Background className="dark:bg-gray-900" />
+            <Background className="dark:bg-[#0f172a]" />
             <Controls className="dark:bg-gray-800 dark:text-white" />
             <MiniMap 
               className="dark:bg-gray-800"

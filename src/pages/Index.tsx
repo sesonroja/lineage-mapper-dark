@@ -2,7 +2,7 @@ import { LineageGraph } from "@/components/LineageGraph";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-[#0f172a]">
       <header className="p-4 border-b border-gray-800">
         <h1 className="text-2xl font-semibold text-white">Data Lineage Visualization</h1>
       </header>
